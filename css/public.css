@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: calc(100%);
+}
+
+.form-item {
+  display: flex;
+  padding: 0.2rem 0;
+}
+
+input {
+  outline: none;
+  font-size: 0.32rem;
+  border: none;
+  flex: 1;
+}
+
+.yd-hide {
+  display: none !important;
+}
+
+.yd-1px {
+  position: relative;
+  display: block;
+}
+.yd-1px::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  left: 0;
+  top: 0;
+  transform-origin: left top;
+  border: 1px solid #C7C7C7;
+  color: #C7C7C7;
+  transform: scale(0.5);
+}
+
+.yd-1px-t {
+  position: relative;
+  display: block;
+}
+.yd-1px-t::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1px solid #C7C7C7;
+  color: #C7C7C7;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+}
+
+.yd-1px-b {
+  position: relative;
+  display: block;
+}
+.yd-1px-b::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1px solid #C7C7C7;
+  color: #C7C7C7;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+}
+
+.yd-1px-l {
+  position: relative;
+  display: block;
+}
+.yd-1px-l::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: 1px;
+  border-left: 1px solid #C7C7C7;
+  color: #C7C7C7;
+  transform-origin: 0 0;
+  transform: scaleX(0.5);
+}
+
+.yd-1px-r {
+  position: relative;
+  display: block;
+}
+.yd-1px-r::after {
+  content: " ";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 1px;
+  border-left: 1px solid #C7C7C7;
+  color: #C7C7C7;
+  transform-origin: 0 0;
+  transform: scaleX(0.5);
+}
+
+.yd-normal-p {
+  padding: 0.2rem 0.24rem;
+}
+
+/*# sourceMappingURL=public.css.map */

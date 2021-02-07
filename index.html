@@ -1,0 +1,64 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <title>杏花</title>
+  <link rel="stylesheet" href="./css/public.css">
+  <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+  <div style="padding: .2rem .24rem;">
+    <div>
+      <div class="head">
+        <div class="item" data-index='0'>手机登录</div>
+        <div class="item" data-index='1'>密码登录</div>
+      </div>
+      <div class="form-item yd-1px-b">
+        <input type="tel">
+      </div>
+      <div class="form-item yd-1px-b">
+        <input type="tel" placeholder="请输入验证码">
+      </div>
+      <div class="form-item yd-1px-b yd-hide">
+        <input type="tel" placeholder="请输入密码">
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/reset.js"></script>
+  <script src="./js/jquery-1.7.2.js"></script>
+  <script>
+    var currentIndex = 0
+    $('.item').on('click', function () {
+      var index = $(this).data('index');
+      if (index == 0 && index != currentIndex) {
+        $('.form-item').eq(2).addClass('leave')
+        setTimeout(() => {
+          $('.form-item').eq(2).addClass('yd-hide').removeClass('leave')
+          $('.form-item').eq(1).removeClass('yd-hide').addClass('enter')
+        }, 200);
+        setTimeout(() => {
+          $('.form-item').eq(1).removeClass('enter')
+        }, 400);
+        currentIndex = 0
+      } else if (index == 1 && index != currentIndex) {
+        $('.form-item').eq(1).addClass('leave')
+        setTimeout(() => {
+          $('.form-item').eq(1).addClass('yd-hide').removeClass('leave')
+          $('.form-item').eq(2).removeClass('yd-hide').addClass('enter')
+        }, 200);
+        setTimeout(() => {
+          $('.form-item').eq(2).removeClass('enter')
+        }, 400);
+        currentIndex = 1
+      }
+    })
+  </script>
+</body>
+
+</html>
