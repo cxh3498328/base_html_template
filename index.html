@@ -2,63 +2,98 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="pragma" content="no-cache">
-  <meta http-equiv="cache-control" content="no-cache">
-  <title>杏花</title>
-  <link rel="stylesheet" href="./css/public.css">
-  <link rel="stylesheet" href="./css/login.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/xh-yd-com.css">
+  <script src="./js/reset.js"></script>
+  <style>
+    .extend {
+      font-size: .24rem;
+    }
+
+    .demo-item {
+      padding: .2rem 0;
+    }
+  </style>
 </head>
 
 <body>
-  <div style="padding: .2rem .24rem;">
-    <div>
-      <div class="head">
-        <div class="item" data-index='0'>手机登录</div>
-        <div class="item" data-index='1'>密码登录</div>
-      </div>
-      <div class="form-item yd-1px-b">
-        <input type="tel">
-      </div>
-      <div class="form-item yd-1px-b">
-        <input type="tel" placeholder="请输入验证码">
-      </div>
-      <div class="form-item yd-1px-b yd-hide">
-        <input type="tel" placeholder="请输入密码">
-      </div>
-    </div>
+  <div class="demo-item">
+    <div class="extend triangle-close">展开</div>
   </div>
 
-  <script src="./js/reset.js"></script>
+  <div class="demo-item">
+    <button class="sms-send-btn" id="send" data-time="60">获取验证码</button>
+  </div>
+  <div class="demo-item">
+    <div class="footer-btn">
+      <div class="btn">确认</div>
+    </div>
+  </div>
+  <div class="demo-item">
+    <button class="xh-btn" id="btn-demo1">打开toast</button>
+  </div>
+  <div class="demo-item">
+    <button class="xh-btn" id="btn-demo2">打开confirm</button>
+  </div>
+  <div class="demo-item">
+    <button class="xh-btn" id="btn-demo3">打开alert</button>
+  </div>
+  <div class="demo-item">
+    <button class="xh-btn" id="btn-demo4">打开抽屉</button>
+  </div>
+  <div class="demo-item">
+    <img src="1.jpg" onerror="loadError(this)" />
+  </div>
   <script src="./js/jquery-1.7.2.js"></script>
-  <script>
-    var currentIndex = 0
-    $('.item').on('click', function () {
-      var index = $(this).data('index');
-      if (index == 0 && index != currentIndex) {
-        $('.form-item').eq(2).addClass('leave')
-        setTimeout(() => {
-          $('.form-item').eq(2).addClass('yd-hide').removeClass('leave')
-          $('.form-item').eq(1).removeClass('yd-hide').addClass('enter')
-        }, 200);
-        setTimeout(() => {
-          $('.form-item').eq(1).removeClass('enter')
-        }, 400);
-        currentIndex = 0
-      } else if (index == 1 && index != currentIndex) {
-        $('.form-item').eq(1).addClass('leave')
-        setTimeout(() => {
-          $('.form-item').eq(1).addClass('yd-hide').removeClass('leave')
-          $('.form-item').eq(2).removeClass('yd-hide').addClass('enter')
-        }, 200);
-        setTimeout(() => {
-          $('.form-item').eq(2).removeClass('enter')
-        }, 400);
-        currentIndex = 1
+  <script src="./js/com.js"></script>
+</body>
+<script>
+  var index = 0;
+  console.log((typeof index == undefined) ? '1' : index)
+  $('#send').on('click', function () {
+    console.log('发送请求')
+    YDPlugs.toast('发送成功', 1000)
+  })
+  $('#btn-demo1').on('click', function () {
+    YDPlugs.toast('我是测试toast', 1000)
+  })
+  $('#btn-demo2').click(function () {
+    var index = YDPlugs.confirm({
+      content: '这是一段测试文本',
+      confirmText: '确认',
+      cancleText: '取消',
+      confirm: function () {
+        console.log(123)
+        setTimeout(function () {
+          $('body div').remove('.xh-mask')
+          $('body div').remove('#xh-confirm-' + index + '')
+        }, 2000)
       }
     })
-  </script>
-</body>
+  })
+  $('#btn-demo3').on('click', function () {
+    YDPlugs.alert({
+      title: '提示',
+      content: '测试弹窗'
+    }, 1000)
+  })
+  $('#btn-demo4').click(function () {
+    YDPlugs.drawCon()
+  })
+  request({
+    url: 'qrcodescan/scan_report_type.do',
+    ajaxData: {
+      TIMESET: '20200513161435898',
+      HOSPITALID: '05940078',
+      code: 'xhuQRipLEy3XngKcwtB9SACJRx4rCRuBG+zKRgQCg40VqG31Ff7QiMTrTJVPDyGBWlnIvSXYIXEtfA0EeZAE0w=='
+    }
+  }).then(data => {
+    console.log(data)
+  }).catch(err => {
+    console.log('请求失败')
+  })
+</script>
 
 </html>

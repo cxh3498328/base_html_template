@@ -1,0 +1,266 @@
+@themeColor: #3388FF;
+@borderColor: #C7C7C7;
+
+.border-1px {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: 0;
+    left: 0;
+    content: '';
+    border: 1px solid @themeColor;
+    transform: scale(.5);
+    transform-origin: 0 0;
+  }
+}
+
+.border-1px-t {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    height: 1px;
+    right: 0;
+    left: 0;
+    top: 0;
+    content: '';
+    border-top: 1px solid @borderColor;
+    transform: scaleY(.5);
+    transform-origin: 0 100%;
+  }
+}
+
+.border-1px-b {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    height: 1px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    content: '';
+    border-bottom: 1px solid @borderColor;
+    transform: scaleY(.5);
+    transform-origin: 0 100%;
+  }
+}
+
+.border-1px-l {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    width: 1px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    content: '';
+    border-left: 1px solid @themeColor;
+    transform: scaleX(.5);
+    transform-origin: 100% 0;
+  }
+}
+
+.border-1px-r {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    width: 1px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    border-left: 1px solid @borderColor;
+    transform: scaleX(.5);
+    transform-origin: 100% 0;
+  }
+}
+
+.xh-btn {
+  .border-1px;
+  border: none;
+  outline: none;
+  padding: .2rem .24rem;
+  color: #000;
+  font-size: .24rem;
+  background-color: #fff;
+
+  &::before {
+    border-radius: .12rem;
+  }
+}
+
+.triangle-close {
+  display: flex;
+  align-items: center;
+
+  &::after {
+    content: "";
+    width: 0;
+    height: 0;
+    margin-left: .1rem;
+    border-top: .16rem solid #777;
+    border-left: .08rem solid transparent;
+    border-right: .08rem solid transparent;
+  }
+}
+
+.triangle-open {
+  display: flex;
+  align-items: center;
+
+  &::after {
+    content: "";
+    width: 0;
+    height: 0;
+    margin-left: .1rem;
+    border-bottom: .16rem solid #777;
+    border-left: .08rem solid transparent;
+    border-right: .08rem solid transparent;
+  }
+}
+
+.sms-send-btn {
+  .border-1px;
+  border: none;
+  outline: none;
+  background-color: #fff;
+  font-size: .24rem;
+  color: @themeColor;
+  padding: .2rem .24rem;
+  min-width: 1.8rem;
+}
+
+.footer-btn {
+  .border-1px-t;
+  height: 1.1rem;
+  padding: .1rem .24rem;
+  box-sizing: border-box;
+  width: 100%;
+  color: #FFF;
+
+  .btn {
+    height: .9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: @themeColor;
+    font-size: .28rem;
+  }
+}
+
+.xh-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+  opacity: .6;
+  z-index: 2;
+}
+
+.xh-confirm,
+.xh-alert {
+  position: absolute;
+  background: #fff;
+  top: 50%;
+  left: 50%;
+  width: 66%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  border-radius: .12rem;
+}
+
+.xh-dialog-title {
+  .border-1px-b;
+  font-size: .32rem;
+  font-weight: bold;
+  text-align: center;
+  padding: .16rem 0;
+}
+
+.xh-dialog-content {
+  padding: .2rem .24rem;
+  font-size: .28rem;
+  color: #333;
+  height: 2rem;
+  box-sizing: border-box;
+}
+
+.xh-dialog-btn {
+  .border-1px-t;
+  display: flex;
+  font-size: .28rem;
+
+  .left,
+  .center,
+  .right {
+    flex: 1;
+    text-align: center;
+    padding: .2rem .24rem;
+    color: #666;
+  }
+
+  .center {
+    color: @themeColor
+  }
+
+  .left {
+    .border-1px-r;
+    color: @themeColor;
+  }
+}
+
+.xh-toast {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000;
+  opacity: .9;
+  padding: .1rem .12rem;
+  border-radius: .04rem;
+  color: #fff;
+  font-size: .24rem;
+}
+
+.draw-con-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: .24rem;
+  z-index: 3;
+  background: #fff;
+  border-radius: .24rem .24rem 0 0;
+
+  .title {
+    padding: .2rem .24rem;
+    .border-1px-b;
+    text-align: center;
+    font-size: .4rem;
+    color: #000;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .close-btn {
+      font-size: .44rem;
+      position: relative;
+      left: 2.7rem;
+    }
+  }
+
+  .content {
+    padding: .2rem .24rem;
+    min-height: 4rem;
+  }
+}

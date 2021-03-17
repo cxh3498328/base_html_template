@@ -1,52 +1,52 @@
+var baseUrl = 'http://testback.fjzkcloud.cn/'
 
-// 自适应重置
-let template = 750 // 设计稿高度
+//改变html的fontSize以适配rem
 let screenWidth = window.screen.width
 screenWidth = screenWidth < 320 ? 320 : (screenWidth > 750 ? 750 : screenWidth)
 let ua = navigator.userAgent
 if (ua.indexOf('Android') == -1 && ua.indexOf('Linux') == -1 && ua.indexOf('iPhone') == -1) {
   screenWidth = 375
 }
-document.getElementsByTagName('html')[0].style.fontSize = (screenWidth / 10) * (1000 / template) + 'px' // 计算后 1rem = 100px 的换算
+document.getElementsByTagName('html')[0].style.fontSize = (screenWidth / 10) * (1000 / 750) + 'px'
 
-
-// 解决页面缓存问题
-if(GetQueryString('v')){
-  replaceParamVal("v",new Date().getTime())
-}else{
+// 增加时间戳处理缓存问题
+if (GetQueryString('v')) {
+  replaceParamVal("v", new Date().getTime())
+} else {
   if (location.href.indexOf("?") != -1) {
     history.pushState("", "", location.href + "&v=" + new Date().getTime());
-  }else{
+  } else {
     history.pushState("", "", location.href + "?v=" + new Date().getTime());
   }
 }
 
-// 获取地址栏参数
-function GetQueryString(name)
-{
+function replaceParamVal(paramName, replaceWith) {
+  var oUrl = this.location.href.toString();
+  var re = eval('/(' + paramName + '=)([^&]*)/gi');
+  var nUrl = oUrl.replace(re, paramName + '=' + replaceWith);
+  history.pushState("", "", nUrl)
+}
+
+//图片加载失败显示的默认图
+function loadError(e) {
+  e.src = './static/error_200x140.png'
+}
+
+// 获取地址栏上的参数
+function GetQueryString(name) {
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
   var r = window.location.search.substr(1).match(reg);
   if (r != null) {
-      return unescape(r[2]);
+    return unescape(r[2]);
   }
   return null;
 };
 
-// 修改地址栏参数
-// @paramName 参数名称
-// @replaceWith 替换文本
-function replaceParamVal(paramName,replaceWith) {
-  var oUrl = this.location.href.toString();
-  var re=eval('/('+ paramName+'=)([^&]*)/gi');
-  var nUrl = oUrl.replace(re,paramName+'='+replaceWith);
-  history.pushState("", "", nUrl)
-}
-
-// 部分手机唤起软键盘、页面不回弹
-function inputBlur(){
+// 部分苹果手机input失焦不回弹
+function inputBlur() {
   let u = navigator.userAgent,
     isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-  if(isIOS){ //判断是 iOS
+  if (isIOS) { //判断是 iOS
     setTimeout(() => {
       const scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0
       window.scrollTo(0, Math.max(scrollHeight - 1, 0)) // 归位
@@ -54,7 +54,8 @@ function inputBlur(){
   }
 }
 
-//常用正则匹配
+//使用方法
+// example regularList['iphone'].rule.test(phone)
 const regularList = {
   'iphone': {
     rule: /^1[3456789]\d{9}$/,
